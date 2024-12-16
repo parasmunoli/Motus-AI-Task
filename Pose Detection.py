@@ -36,7 +36,7 @@ while cap.isOpened():
     if results.pose_landmarks:
         # Draw pose landmarks
         mp.solutions.drawing_utils.draw_landmarks(
-            frame, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
+            frame, results.pose_landmarks, pose_init.POSE_CONNECTIONS)
 
         landmarks = results.pose_landmarks.landmark
         frame_height, frame_width, _ = frame.shape
