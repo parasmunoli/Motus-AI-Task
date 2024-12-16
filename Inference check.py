@@ -13,7 +13,6 @@ output_details = interpreter.get_output_details()
 cap = cv2.VideoCapture("squat.mp4")
 frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-inf_time = []
 
 while cap.isOpened():
     ret, frame = cap.read()
@@ -32,7 +31,6 @@ while cap.isOpened():
     output_data = interpreter.get_tensor(output_details[0]['index'])
 
     print(f"Inference Time: {inference_time:.2f} ms")
-    inf_time.append(inference_time)
 
     cv2.imshow("Pose Detection", frame)
     if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -40,6 +38,3 @@ while cap.isOpened():
 
 cap.release()
 cv2.destroyAllWindows()
-
-with open("inference_time.txt", "w") as file:
-    file.write("\n".join([f"{time:.2f}" for time in inf_time]))
